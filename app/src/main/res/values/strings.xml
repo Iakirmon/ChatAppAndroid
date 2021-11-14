@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Chat_app</string>
+    <string name="enter_email">Wprowadź Email</string>
+    <string name="enter_password">Wprowadź hasło</string>
+    <string name="login">Login</string>
+    <string name="enter_name">Wprowadź nazwe</string>
+    <string name="confirm_password">Powtórz hasło</string>
+    <string name="signup">Zarejestruj się</string>
+    <string name="enter_correct_email">Wprowadź poprawny email</string>
+    <string name="password_mismatch">Hasła się nie zgadzają</string>
+    <string name="user_created_successfully">Użytkownik został utworzony</string>
+    <string name="signup_failed">Nie udało się zarejestrować : $1$s</string>
+    <string name="donthave_account">Nie masz konta?</string>
+    <string name="failed_to_update_profile">Aktualizacja profilu nie udała się</string>
+    <string name="permission_required">Wymagane jest zezwolenie na dostęp</string>
+    <string name="save">Zapisz</string>
+    <string name="logout">Wyloguj</string>
+    <string name="change_picture">Zmień zdjęcie</string>
+    <string name="remove_picture">Usuń zdjęcie</string>
+    <string name="photo_removed_successfully">Zdjęcie zostało usunięte</string>
+    <string name="profile">Profil</string>
+    <string name="change_password">Zmień Hasło</string>
+    <string name="password_changed_successfully">Hasło zostało zmienione</string>
+    <string name="something_went_wrong">Coś poszło nie tak!</string>
+    <string name="reset_password">Zresetuj hasło</string>
+    <string name="reset_password_instructions">Instrukcje do zresetowania hasła zostały wysłane na podany email!</string>
+    <string name="btnRetry">Powtórz</string>
+    <string name="Close">Zamknij</string>
+    <string name="email_sent_failed">Nie udało się wysłać email!</string>
+    <string name="resend_timer">Wyślij ponownie!</string>
+    <string name="loading">Proszę czekać</string>
+</resources>
