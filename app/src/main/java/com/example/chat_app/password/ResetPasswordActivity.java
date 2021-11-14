@@ -38,8 +38,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
         if(email.equals("")){
             etEmail.setError(getString(R.string.enter_email));
         } else {
-            progressBar.setVisibility(View.VISIBLE);
             FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+            progressBar.setVisibility(View.VISIBLE);
             firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
