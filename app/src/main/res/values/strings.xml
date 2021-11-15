@@ -29,4 +29,5 @@
     <string name="email_sent_failed">Nie udało się wysłać email!</string>
     <string name="resend_timer">Wyślij ponownie!</string>
     <string name="loading">Proszę czekać</string>
+    <string name="no_internet">Sprawdź połączenie z internetem</string>
 </resources>

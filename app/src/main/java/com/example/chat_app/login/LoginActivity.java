@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.chat_app.Common.Util;
 import com.example.chat_app.MainActivity;
+import com.example.chat_app.MessageActivity;
 import com.example.chat_app.R;
 import com.example.chat_app.password.ResetPasswordActivity;
 import com.example.chat_app.signup.SignupActivity;
@@ -48,23 +50,26 @@ public class LoginActivity extends AppCompatActivity {
         } else if(password.equals("")){
             etPassword.setError(getString(R.string.enter_password));
         } else{
-            progressBar.setVisibility(View.VISIBLE);
-            FirebaseAuth firebaseAuth= FirebaseAuth.getInstance();
-            firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    progressBar.setVisibility(View.GONE);
-                    if(task.isSuccessful()){
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
-                        //Toast.makeText(LoginActivity.this, "Udało się zalogować!",Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Nie udało się zalogować: "+
-                                task.getException(),Toast.LENGTH_SHORT).show();
+            if(Util.connectionAvailable(this)) {
+                progressBar.setVisibility(View.VISIBLE);
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressBar.setVisibility(View.GONE);
+                        if (task.isSuccessful()) {
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
+                            //Toast.makeText(LoginActivity.this, "Udało się zalogować!",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Nie udało się zalogować: " +
+                                    task.getException(), Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-            });
-
+                });
+            } else {
+                startActivity(new Intent(LoginActivity.this, MessageActivity.class));
+            }
         }
     }
     public void tvResetPasswordClick(View view){
