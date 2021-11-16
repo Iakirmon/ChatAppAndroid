@@ -30,4 +30,12 @@
     <string name="resend_timer">Wyślij ponownie!</string>
     <string name="loading">Proszę czekać</string>
     <string name="no_internet">Sprawdź połączenie z internetem</string>
+    <string name="Chat">Czat</string>
+    <string name="requests">Zaproszenie</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="empty_chat_list">Lista znajomych, z którymi możesz pogadać</string>
+    <string name="empty_friends_list">Lista znajomych pojawi się tutaj</string>
+    <string name="empty_requests_list">Zaproszenia do znajomych pojawi się tutaj</string>
+    <string name="find">Szukaj</string>
 </resources>
