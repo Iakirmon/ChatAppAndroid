@@ -42,4 +42,6 @@
     <string name="send_friend_request">Wyślij prośbę</string>
     <string name="cancel_request">Anuluj prośbę</string>
     <string name="failed_to_fetch_friends">Nie udało się pobrać znajomych: %1$s</string>
+    <string name="request_sent_succ">Prośba została wysłana!</string>
+    <string name="failed_to_send_request">Nie powiodła się próba wysłania prośby: %1$s</string>
 </resources>
