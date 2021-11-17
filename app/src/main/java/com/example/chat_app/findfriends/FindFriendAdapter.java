@@ -70,7 +70,15 @@ public class FindFriendAdapter extends RecyclerView.Adapter<FindFriendAdapter.Fi
             }
         });
         friendRequestDatabase= FirebaseDatabase.getInstance().getReference().child(NodeNames.FRIEND_REQUESTS);
+
         currentUser= FirebaseAuth.getInstance().getCurrentUser();
+        if(friendsModel.isRequestSent()){
+            holder.btnSendRequest.setVisibility(View.GONE);
+            holder.btnCancelRequest.setVisibility(View.VISIBLE);
+        } else {
+            holder.btnSendRequest.setVisibility(View.VISIBLE);
+            holder.btnCancelRequest.setVisibility(View.GONE);
+        }
         holder.btnSendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +120,49 @@ public class FindFriendAdapter extends RecyclerView.Adapter<FindFriendAdapter.Fi
                 });
             }
         });
+
+        holder.btnCancelRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.btnCancelRequest.setVisibility(View.GONE);
+                holder.pbRequest.setVisibility(View.VISIBLE);
+
+                userId=friendsModel.getUserId();
+                friendRequestDatabase.child(currentUser.getUid()).child(userId).child(NodeNames.REQUEST_TYPE)
+                        .setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            friendRequestDatabase.child(userId).child(currentUser.getUid()).child(NodeNames.REQUEST_TYPE)
+                                    .setValue(null).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(context, R.string.request_cancelled_succ, Toast.LENGTH_SHORT).show();
+                                        holder.btnSendRequest.setVisibility(View.VISIBLE);
+                                        holder.pbRequest.setVisibility(View.GONE);
+                                        holder.btnCancelRequest.setVisibility(View.GONE);
+
+                                    } else {
+                                        Toast.makeText(context, context.getString(R.string.failed_to_cancel_request,task.getException()), Toast.LENGTH_SHORT).show();
+                                        holder.btnSendRequest.setVisibility(View.GONE);
+                                        holder.pbRequest.setVisibility(View.GONE);
+                                        holder.btnCancelRequest.setVisibility(View.VISIBLE);
+                                    }
+                                }
+                            });
+                        }
+                        else {
+                            Toast.makeText(context, context.getString(R.string.failed_to_cancel_request,task.getException()), Toast.LENGTH_SHORT).show();
+                            holder.btnSendRequest.setVisibility(View.GONE);
+                            holder.pbRequest.setVisibility(View.GONE);
+                            holder.btnCancelRequest.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+            }
+        });
+
     }
 
     @Override
