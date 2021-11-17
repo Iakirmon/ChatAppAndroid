@@ -38,4 +38,7 @@
     <string name="empty_friends_list">Lista znajomych pojawi się tutaj</string>
     <string name="empty_requests_list">Zaproszenia do znajomych pojawi się tutaj</string>
     <string name="find">Szukaj</string>
+    <string name="press_back_to_exit">Wciśnij wstecz ponownie, żeby wyjść!</string>
+    <string name="send_friend_request">Wyślij prośbę</string>
+    <string name="cancel_request">Anuluj prośbę</string>
 </resources>
