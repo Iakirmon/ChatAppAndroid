@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.chat_app.findfriends.FindFriendsFragment;
 import com.example.chat_app.profile.ProfileActivity;
 import com.google.android.material.tabs.TabLayout;
 
