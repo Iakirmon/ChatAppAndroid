@@ -49,4 +49,8 @@
     <string name="accept">Akceptuj</string>
     <string name="deny">Odrzuć</string>
     <string name="failed_to_fetch_friend_requests">Nie udało się pobrać próśb od znajomych %1$s</string>
+    <string name="failed_to_deny_request">Nie udało się odrzucić prośby</string>
+    <string name="request_denied_succ">Odrzucona została prośba o dołączenie do znajomych</string>
+    <string name="failed_to_accept_request">Nie udało się dodać do znajomych!</string>
+    <string name="accept_request_succ">Zaakceptowałeś prośbę od znajomych</string>
 </resources>
