@@ -46,4 +46,7 @@
     <string name="failed_to_send_request">Nie powiodła się próba wysłania prośby: %1$s</string>
     <string name="request_cancelled_succ">Prośba została anulowana</string>
     <string name="failed_to_cancel_request">Nie udało się anulować prośby: %1$s</string>
+    <string name="accept">Akceptuj</string>
+    <string name="deny">Odrzuć</string>
+    <string name="failed_to_fetch_friend_requests">Nie udało się pobrać próśb od znajomych %1$s</string>
 </resources>

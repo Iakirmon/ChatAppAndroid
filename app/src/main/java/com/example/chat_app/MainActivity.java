@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.chat_app.findfriends.FindFriendsFragment;
 import com.example.chat_app.profile.ProfileActivity;
+import com.example.chat_app.requests.RequestsFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
