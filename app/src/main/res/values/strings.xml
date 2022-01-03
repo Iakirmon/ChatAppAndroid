@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Chat_app</string>
+    <string name="app_name">Komunikator</string>
     <string name="enter_email">Wprowadź Email</string>
     <string name="enter_password">Wprowadź hasło</string>
     <string name="login">Login</string>
