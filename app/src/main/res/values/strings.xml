@@ -53,4 +53,8 @@
     <string name="request_denied_succ">Odrzucona została prośba o dołączenie do znajomych</string>
     <string name="failed_to_accept_request">Nie udało się dodać do znajomych!</string>
     <string name="accept_request_succ">Zaakceptowałeś prośbę od znajomych</string>
+    <string name="failed_to_fetch_chat_list">Nie mozna pobrac listy znajomych</string>
+    <string name="enter_message">Napisz wiadomość</string>
+    <string name="failed_to_send_message">Nie udalo sie wyslac wiadomosci</string>
+    <string name="message_sent_successfully">Udalo sie wyslac wiadomosc</string>
 </resources>
