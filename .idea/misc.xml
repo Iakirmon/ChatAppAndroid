@@ -6,10 +6,13 @@
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/drawable/card_border.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/drawable/ic_attachment.xml" value="0.1" />
+        <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/drawable/ic_image.xml" value="0.1" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/drawable/ic_send.xml" value="0.1" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/drawable/ic_user_background.xml" value="0.1" />
+        <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/drawable/received_message_background.xml" value="0.1" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/drawable/red_circle.xml" value="0.1" />
+        <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/drawable/sent_message_background.xml" value="0.1" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/layout/activity_change_password.xml" value="0.264" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/layout/activity_chat.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/layout/activity_login.xml" value="0.264" />
@@ -27,6 +30,7 @@
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/layout/fragment_find_friends.xml" value="0.1265625" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/layout/fragment_requests.xml" value="0.264" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/layout/friend_request_layout.xml" value="0.176" />
+        <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/layout/message_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/layout/tab_chat.xml" value="0.264" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/layout/tab_findfriends.xml" value="0.176" />
         <entry key="..\:/Users/48789/AndroidStudioProjects/Chat_app/app/src/main/res/layout/tab_requests.xml" value="0.4" />
