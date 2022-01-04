@@ -62,4 +62,8 @@
     <string name="video">Wideo</string>
     <string name="upload_progress">Przesyłanie</string>
     <string name="failed_to_upload">Nie udało się przesłać</string>
+    <string name="forward">Podaj</string>
+    <string name="delete">Usuń</string>
+    <string name="share">Udostępnij</string>
+    <string name="download">Pobierz</string>
 </resources>

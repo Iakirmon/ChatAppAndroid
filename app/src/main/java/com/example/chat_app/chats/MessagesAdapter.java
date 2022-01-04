@@ -4,7 +4,11 @@ package com.example.chat_app.chats;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import androidx.appcompat.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -15,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,6 +38,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     private Context context;
     private List<MessageModel> messageList;
     private FirebaseAuth firebaseAuth;
+
+    private ActionMode actionMode;
 
     public MessagesAdapter(Context context, List<MessageModel> messageList) {
         this.context = context;
@@ -131,6 +138,19 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
             }
         });
+        holder.clMessage.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(actionMode!=null)
+                    return false;
+
+                actionMode = ((AppCompatActivity)context).startSupportActionMode(actionModeCallBack);
+
+                holder.clMessage.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+
+                return  true;
+            }
+        });
     }
 
     @Override
@@ -169,4 +189,48 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
         }
     }
+    public ActionMode.Callback actionModeCallBack = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater inflater = actionMode.getMenuInflater();
+            inflater.inflate(R.menu.menu_chat_options,menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            int itemId=item.getItemId();
+            switch (itemId)
+            {
+                case R.id.mnuDelete:
+                    Toast.makeText(context, "Wcisnieto opcje usuwania", Toast.LENGTH_SHORT).show();
+                    actionMode.finish();
+                    break;
+                case R.id.mnuDownload:
+                    Toast.makeText(context, "Wcisnieto opcje pobierania", Toast.LENGTH_SHORT).show();
+                    actionMode.finish();
+                    break;
+                case R.id.mnuShare:
+                    Toast.makeText(context, "Wcisnieto opcje udostępniania", Toast.LENGTH_SHORT).show();
+                    actionMode.finish();
+                    break;
+
+                case R.id.mnuForward:
+                    Toast.makeText(context, "Wcisnieto opcje podawania", Toast.LENGTH_SHORT).show();
+                    actionMode.finish();
+                    break;
+            }
+            return false;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            actionMode=null;
+        }
+    };
 }
