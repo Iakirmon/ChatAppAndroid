@@ -66,4 +66,7 @@
     <string name="delete">Usuń</string>
     <string name="share">Udostępnij</string>
     <string name="download">Pobierz</string>
+    <string name="message_deleted_successfully">Wiadomość usunięta</string>
+    <string name="failed_to_delete_file">Nie udało się usunąć</string>
+    <string name="failed_to_delete_message">Nie udało się usunąć wiadomości</string>
 </resources>

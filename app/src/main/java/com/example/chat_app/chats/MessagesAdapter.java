@@ -40,6 +40,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     private FirebaseAuth firebaseAuth;
 
     private ActionMode actionMode;
+    private ConstraintLayout selectedView;
 
     public MessagesAdapter(Context context, List<MessageModel> messageList) {
         this.context = context;
@@ -144,6 +145,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                 if(actionMode!=null)
                     return false;
 
+                selectedView=holder.clMessage;
+
                 actionMode = ((AppCompatActivity)context).startSupportActionMode(actionModeCallBack);
 
                 holder.clMessage.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
@@ -190,6 +193,9 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         }
     }
     public ActionMode.Callback actionModeCallBack = new ActionMode.Callback() {
+
+
+
         @Override
         public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
             MenuInflater inflater = actionMode.getMenuInflater();
@@ -204,11 +210,18 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
         @Override
         public boolean onActionItemClicked(ActionMode actionMode, MenuItem item) {
+
+            String selectedMessageId=String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE_ID));
+            String selectedMessage=String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE));
+            String selectedMessageType=String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE_TYPE));
+
             int itemId=item.getItemId();
             switch (itemId)
             {
                 case R.id.mnuDelete:
-                    Toast.makeText(context, "Wcisnieto opcje usuwania", Toast.LENGTH_SHORT).show();
+                    if(context instanceof ChatActivity){
+                        ((ChatActivity)context).deleteMessage(selectedMessageId,selectedMessageType);
+                    }
                     actionMode.finish();
                     break;
                 case R.id.mnuDownload:

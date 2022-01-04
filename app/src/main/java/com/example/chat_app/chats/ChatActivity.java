@@ -233,7 +233,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+                loadMessages();
             }
 
             @Override
@@ -442,6 +442,66 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void deleteMessage(final String messageId, final String messageType){
+
+        DatabaseReference databaseReference = mRootRef.child(NodeNames.MESSAGES)
+                .child(currentUserId).child(chatUserId).child(messageId);
+
+        databaseReference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful())
+                {
+                    DatabaseReference databaseReferenceChatUser = mRootRef.child(NodeNames.MESSAGES)
+                            .child(chatUserId).child(currentUserId).child(messageId);
+
+                    databaseReferenceChatUser.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if(task.isSuccessful())
+                            {
+                                Toast.makeText(ChatActivity.this, R.string.message_deleted_successfully, Toast.LENGTH_SHORT).show();
+                                if(!messageType.equals(Constants.MESSAGE_TYPE_TEXT))
+                                {
+                                    StorageReference rootRef = FirebaseStorage.getInstance().getReference();
+                                    String folder = messageType.equals(Constants.MESSAGE_TYPE_VIDEO)?Constants.MESSAGE_VIDEOS:Constants.MESSAGE_IMAGES;
+                                    String fileName = messageType.equals(Constants.MESSAGE_TYPE_VIDEO)?messageId +".mp4": messageId+".jpg";
+                                    StorageReference fileRef = rootRef.child(folder).child(fileName);
+
+                                    fileRef.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(!task.isSuccessful())
+                                            {
+                                                Toast.makeText(ChatActivity.this,
+                                                        R.string.failed_to_delete_file, Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                            else
+                            {
+                                Toast.makeText(ChatActivity.this, R.string.failed_to_delete_message,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+                else
+                {
+                    Toast.makeText(ChatActivity.this, R.string.failed_to_delete_message,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
+
     }
 
 }
