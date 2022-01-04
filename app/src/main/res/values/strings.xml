@@ -69,4 +69,10 @@
     <string name="message_deleted_successfully">Wiadomość usunięta</string>
     <string name="failed_to_delete_file">Nie udało się usunąć</string>
     <string name="failed_to_delete_message">Nie udało się usunąć wiadomości</string>
+    <string name="failed_to_store_file">Nie udało się przechować pliku</string>
+    <string name="failed_to_download">Nie udało się pobrać</string>
+    <string name="file_downloaded_successfully">Plik został pobrany</string>
+    <string name="download_progress">Pobieranie w toku</string>
+    <string name="view">Widok</string>
+    <string name="share_with">Udostępnione</string>
 </resources>

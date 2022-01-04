@@ -198,8 +198,16 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
         @Override
         public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+
             MenuInflater inflater = actionMode.getMenuInflater();
-            inflater.inflate(R.menu.menu_chat_options,menu);
+            inflater.inflate(R.menu.menu_chat_options, menu);
+
+            String selectedMessageType = String.valueOf(selectedView.getTag(R.id.TAG_MESSAGE_TYPE));
+            if(selectedMessageType.equals(Constants.MESSAGE_TYPE_TEXT))
+            {
+                MenuItem itemDownload = menu.findItem(R.id.mnuDownload);
+                itemDownload.setVisible(false);
+            }
             return true;
         }
 
@@ -225,11 +233,26 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                     actionMode.finish();
                     break;
                 case R.id.mnuDownload:
-                    Toast.makeText(context, "Wcisnieto opcje pobierania", Toast.LENGTH_SHORT).show();
+                    if(context instanceof ChatActivity){
+                        ((ChatActivity)context).downloadFile(selectedMessageId,selectedMessageType,false);
+                    }
                     actionMode.finish();
                     break;
                 case R.id.mnuShare:
-                    Toast.makeText(context, "Wcisnieto opcje udostępniania", Toast.LENGTH_SHORT).show();
+                    if(selectedMessageType.equals(Constants.MESSAGE_TYPE_TEXT)){
+                        Intent intentShare = new Intent();
+                        intentShare.setAction(Intent.ACTION_SEND);
+                        intentShare.putExtra(Intent.EXTRA_TEXT, selectedMessage);
+                        intentShare.setType("text/plain");
+                        context.startActivity(intentShare);
+                    }
+                    else
+                    {
+                        if(context instanceof  ChatActivity)
+                        {
+                            ((ChatActivity)context).downloadFile(selectedMessageId, selectedMessageType, true);
+                        }
+                    }
                     actionMode.finish();
                     break;
 
@@ -244,6 +267,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         @Override
         public void onDestroyActionMode(ActionMode actionMode) {
             actionMode=null;
+            selectedView.setBackgroundColor(context.getResources().getColor(R.color.chat_background));
+
         }
     };
 }
