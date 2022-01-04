@@ -191,19 +191,19 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     }
     public ActionMode.Callback actionModeCallBack = new ActionMode.Callback() {
         @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
             MenuInflater inflater = actionMode.getMenuInflater();
             inflater.inflate(R.menu.menu_chat_options,menu);
             return true;
         }
 
         @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
             return false;
         }
 
         @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+        public boolean onActionItemClicked(ActionMode actionMode, MenuItem item) {
             int itemId=item.getItemId();
             switch (itemId)
             {
@@ -229,7 +229,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         }
 
         @Override
-        public void onDestroyActionMode(ActionMode mode) {
+        public void onDestroyActionMode(ActionMode actionMode) {
             actionMode=null;
         }
     };

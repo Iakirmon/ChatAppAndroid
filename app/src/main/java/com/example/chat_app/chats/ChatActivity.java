@@ -121,13 +121,13 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         currentUserId=firebaseAuth.getCurrentUser().getUid();
         if (getIntent().hasExtra(Extras.USER_KEY)) {
             chatUserId = getIntent().getStringExtra(Extras.USER_KEY);
-            photoName = chatUserId + ".jpg";
+            //photoName = chatUserId + ".jpg";
         }
         if (getIntent().hasExtra(Extras.USER_NAME))
             userName = getIntent().getStringExtra(Extras.USER_NAME);
 
-        //if (getIntent().hasExtra(Extras.PHOTO_NAME))
-        //getIntent().getStringExtra(Extras.PHOTO_NAME);
+        if (getIntent().hasExtra(Extras.PHOTO_NAME))
+        getIntent().getStringExtra(Extras.PHOTO_NAME);
 
 
         tvUserName.setText(userName);
