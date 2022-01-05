@@ -5,15 +5,22 @@ import android.net.ConnectivityManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 
+import com.example.chat_app.R;
 import com.google.android.gms.common.api.Response;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Util {
     public static boolean connectionAvailable(Context context) {
@@ -24,6 +31,51 @@ public class Util {
             return false;
         }
     }
+
+    public static  void updateChatDetails(final Context context, final String currentUserId, final String chatUserId, final String lastMessage)
+    {
+        final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference chatRef = rootRef.child(NodeNames.CHATS).child(chatUserId).child(currentUserId);
+
+        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String currentCount="0";
+                if(dataSnapshot.child(NodeNames.UNREAD_COUNT).getValue()!=null)
+                    currentCount = dataSnapshot.child(NodeNames.UNREAD_COUNT).getValue().toString();
+
+
+                Map chatMap = new HashMap();
+                chatMap.put(NodeNames.TIME_STAMP, ServerValue.TIMESTAMP);
+                chatMap.put(NodeNames.UNREAD_COUNT, Integer.valueOf(currentCount)+1);
+                chatMap.put(NodeNames.LAST_MESSAGE, lastMessage);
+                chatMap.put(NodeNames.LAST_MESSAGE_TIME, ServerValue.TIMESTAMP);
+
+                Map chatUserMap = new HashMap();
+                chatUserMap.put(NodeNames.CHATS +"/" + chatUserId + "/" + currentUserId, chatMap);
+
+                rootRef.updateChildren(chatUserMap, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                        if(databaseError!=null)
+                            Toast.makeText(context, context.getString(R.string.something_went_wrong, databaseError.getMessage())
+                                    , Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(context, context.getString(R.string.something_went_wrong, databaseError.getMessage())
+                        , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
     public static  String getTimeAgo(long time)
     {
         final  int SECOND_MILLIS = 1000;

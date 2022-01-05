@@ -159,6 +159,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         rvMessages.setAdapter(messagesAdapter);
 
         loadMessages();
+
+        mRootRef.child(NodeNames.CHATS).child(currentUserId).child(chatUserId).child(NodeNames.UNREAD_COUNT).setValue(0);
+
         rvMessages.scrollToPosition(messagesList.size()-1);
         srlMessages.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -199,6 +202,15 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                             Toast.makeText(ChatActivity.this, R.string.failed_to_send_message, Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(ChatActivity.this, R.string.message_sent_successfully,Toast.LENGTH_SHORT).show();
+                            String title="";
+                            if(msgType.equals(Constants.MESSAGE_TYPE_TEXT))
+                                title = "New Message";
+                            else if(msgType.equals(Constants.MESSAGE_TYPE_IMAGE))
+                                title = "New Image";
+                            else if(msgType.equals(Constants.MESSAGE_TYPE_VIDEO))
+                                title = "New Video";
+                            String lastMessage= !title.equals("New Message")?title:msg;
+                            Util.updateChatDetails(ChatActivity.this, currentUserId, chatUserId,lastMessage);
                         }
                     }
                 });
@@ -630,5 +642,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        mRootRef.child(NodeNames.CHATS).child(currentUserId).child(chatUserId).child(NodeNames.UNREAD_COUNT).setValue(0);
+        super.onBackPressed();
+
     }
 }
