@@ -50,6 +50,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -65,7 +66,7 @@ import java.util.List;
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView ivSend,ivAttachment,ivProfile;
-    private TextView tvUserName;
+    private TextView tvUserName,tvUserStatus;
     private EditText etMessage;
     private DatabaseReference mRootRef;
     private FirebaseAuth firebaseAuth;
@@ -111,6 +112,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
         ivProfile=findViewById(R.id.ivProfile);
         tvUserName=findViewById(R.id.tvUserName);
+
+        tvUserStatus=findViewById(R.id.tvUserStatus);
+
         ivSend = findViewById(R.id.ivSend);
         ivAttachment=findViewById(R.id.ivAttachment);
         etMessage=findViewById(R.id.etMessage);
@@ -178,6 +182,28 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         view.findViewById(R.id.llVideo).setOnClickListener(this);
         view.findViewById(R.id.ivClose).setOnClickListener(this);
         bottomSheetDialog.setContentView(view);
+
+        DatabaseReference databaseReferenceUsers = mRootRef.child(NodeNames.USERS).child(chatUserId);
+        databaseReferenceUsers.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String status="";
+                if(dataSnapshot.child(NodeNames.ONLINE).getValue()!=null)
+                    status = dataSnapshot.child(NodeNames.ONLINE).getValue().toString();
+
+                if(status.equals("true"))
+                    tvUserStatus.setText(Constants.STATUS_ONLINE);
+                else
+                    tvUserStatus.setText(Constants.STATUS_OFFLINE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
     private void sendMessage(String msg, String msgType, String pushId){
         try{

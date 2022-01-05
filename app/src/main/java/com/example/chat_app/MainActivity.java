@@ -13,11 +13,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.chat_app.Common.NodeNames;
 import com.example.chat_app.chats.ChatFragment;
 import com.example.chat_app.findfriends.FindFriendsFragment;
 import com.example.chat_app.profile.ProfileActivity;
 import com.example.chat_app.requests.RequestsFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tabLayout=findViewById(R.id.tabMain);
         viewPager=findViewById(R.id.vpMain);
+        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+
+        DatabaseReference databaseReferenceUsers= FirebaseDatabase.getInstance().getReference()
+                .child(NodeNames.USERS).child(firebaseAuth.getCurrentUser().getUid());
+        databaseReferenceUsers.child(NodeNames.ONLINE).setValue(true);
+        databaseReferenceUsers.child(NodeNames.ONLINE).onDisconnect().setValue(false);
+
         setViewPager();
     }
     class Adapter extends FragmentPagerAdapter{

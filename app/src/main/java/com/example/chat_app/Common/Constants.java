@@ -7,9 +7,12 @@ public class Constants {
 
     public static final String REQUEST_STATUS_SENT = "sent";
     public static final String REQUEST_STATUS_RECEIVED = "received";
-    public static final String REQUEST_STATUS_ACCEPTED ="accepted" ;
+    public static final String REQUEST_STATUS_ACCEPTED ="accepted";
     public static final String MESSAGE_TYPE_TEXT = "text";
 
-    public static final String MESSAGE_TYPE_IMAGE ="image" ;
-    public static final String MESSAGE_TYPE_VIDEO ="video" ;
+    public static final String MESSAGE_TYPE_IMAGE ="image";
+    public static final String MESSAGE_TYPE_VIDEO ="video";
+    public static final String STATUS_ONLINE = "online";
+    public static final String STATUS_OFFLINE = "offline";
+
 }
