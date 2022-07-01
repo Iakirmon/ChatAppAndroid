@@ -1,4 +1,4 @@
-#ChatAppAndroid
+# ChatAppAndroid
 
 This is a simple messenger whose main purpose was for two people to communicate privately. The main functionalities are:
   1. Sign up and sign in;
