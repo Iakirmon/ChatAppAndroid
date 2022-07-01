@@ -17,21 +17,21 @@ git clone https://github.com/Iakirmon/ChatAppAndroid.git
 Launch Android Studio, build and run applications
 
 Sign in:
-
+\
 ![Test Image 1](https://github.com/Iakirmon/ChatAppAndroid/blob/main/src/logowanie.png)
 
 Profile
-
+\
 ![Test Image 2](https://github.com/Iakirmon/ChatAppAndroid/blob/main/src/profil.png)
 
 Sending invitations
-
+\
 ![Test Image 3](https://github.com/Iakirmon/ChatAppAndroid/blob/main/src/wysylanie_zapr.png)
 
 Accepting invitations
-
+\
 ![Test Image 4](https://github.com/Iakirmon/ChatAppAndroid/blob/main/src/akc_odm_zapr.png)
 
 Chat
-
-![Test Image 2](https://github.com/Iakirmon/ChatAppAndroid/blob/main/src/czat.png)
+\
+![Test Image 5](https://github.com/Iakirmon/ChatAppAndroid/blob/main/src/czat.png)
